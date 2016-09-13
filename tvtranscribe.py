@@ -41,7 +41,7 @@ def main(speech_file):
             'config': {
                 'encoding': 'LINEAR16',  # raw 16-bit signed LE samples
                 'sampleRate': 16000,  # 16 khz
-                'languageCode': 'en-US',  # a BCP-47 language tag
+                'languageCode': 'en-UK',  # a BCP-47 language tag
             },
             'audio': {
                 'content': speech_content.decode('UTF-8')
@@ -49,6 +49,9 @@ def main(speech_file):
             })
     response = service_request.execute()
     print(json.dumps(response))
+
+    with open('tvTranscription.txt', 'w') as outfile:
+        json.dump(response, outfile)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
